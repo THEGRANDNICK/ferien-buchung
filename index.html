@@ -260,8 +260,8 @@
 </style>
 </head>
 <body>
-<audio id="blubSound" src="https://cdn.pixabay.com/audio/2022/10/20/audio_a8cfbfc1be.mp3"></audio>
-<audio id="hoverSound" src="https://cdn.pixabay.com/audio/2022/03/08/audio_e5dc20b70b.mp3"></audio>
+<audio id="clickSound" src="audio/S_Bubble_Click.mp3" preload="auto"></audio>
+<audio id="hoverSound" src="audio/x" preload="auto"></audio>
 <div class="cursor"></div>
 <div class="top-right-controls">
 <label class="toggle-switch" title="Jedi/Sith Mode">
@@ -274,7 +274,7 @@
 </label>
 </div>
 <header onclick="scrollToSection('top')">
-<img alt="Profile Picture" class="profile-pic" src="profile.jpg"/>
+<img alt="Profile Picture" class="profile-pic" src="img/profilbild.jpg"/>
 <h1>Nicolas Vogt</h1>
 <p class="subtitle" data-de="UX &amp; VR Entwickler" data-en="UX &amp; VR Developer">UX &amp; VR Developer</p>
 </header>
@@ -300,7 +300,7 @@
 <section id="projects">
 <h2 data-de="Projekte" data-en="Projects">Projects</h2>
 <div class="project">
-<img alt="Vermögensstruktur VR" onclick="openModal('project1')" src="project.png"/>
+<img alt="Vermögensstruktur VR" onclick="openModal('project1')" src="img/project.png"/>
 </div>
 <!-- You can add more project entries similarly -->
 </section>
@@ -315,7 +315,7 @@
 <div class="modal" id="projectModal" onclick="handleModalClick(event)">
 <div class="modal-content" onclick="event.stopPropagation()">
 <button class="close" onclick="closeModal()">×</button>
-<img alt="Vermögensstruktur VR" src="project.png"/>
+<img alt="Vermögensstruktur VR" src="img/project.png"/>
 <p data-de="VR-Visualisierung von Vermögensstrukturen für Union Investment mit Unreal Engine." data-en="VR visualization of asset structures for Union Investment using Unreal Engine.">
       VR visualization of asset structures for Union Investment using Unreal Engine.
     </p>
