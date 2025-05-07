@@ -7,36 +7,85 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+<nav class="main-nav">
+  <div class="nav-left">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#kontakt">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button id="toggle-dark">🌓</button>
+  </div>
+</nav>
+
+  <nav class="language-toggle">
+    <button onclick="setLanguage('de')">Deutsch</button>
+    <button onclick="setLanguage('en')">English</button>
+  </nav>
+
   <header class="hero">
-    <h1>Hi, ich bin Nicolas Vogt</h1>
-    <p>Informatikstudent · UX-Enthusiast · Technologischer Gestalter</p>
+    <h1 data-de="Hi, ich bin Nicolas Vogt" data-en="Hi, I'm Nicolas Vogt"></h1>
+    <p data-de="Informatikstudent · UX-Enthusiast · Technologischer Gestalter"
+       data-en="Computer Science Student · UX Enthusiast · Technological Creator"></p>
     <div class="buttons">
-      <a href="resume.pdf" class="btn primary">Lebenslauf herunterladen</a>
-      <a href="#kontakt" class="btn secondary">Kontakt</a>
+      <a href="resume.pdf" class="btn primary" data-de="Lebenslauf herunterladen" data-en="Download Resume"></a>
+      <a href="#kontakt" class="btn secondary" data-de="Kontakt" data-en="Contact"></a>
     </div>
   </header>
-  <section class="about">
-    <h2>Über mich</h2>
-    <p>Ich bin ein kreativer Informatikstudent mit starkem Fokus auf User Experience, Webentwicklung und Technologie, die Menschen begeistert.</p>
+
+  <section class="about" id="about">
+    <h2 data-de="Über mich" data-en="About Me"></h2>
+    <p data-de="Ich bin ein kreativer Informatikstudent mit starkem Fokus auf User Experience, Webentwicklung und immersiven Technologien wie VR."
+       data-en="I'm a creative computer science student focused on user experience, web development, and immersive technologies like VR."></p>
   </section>
-  <section class="projects">
-    <h2>Projekte</h2>
+
+  <section class="experience" id="experience">
+    <h2 data-de="Berufserfahrung" data-en="Experience"></h2>
+    <ul>
+      <li>
+        <strong data-de="Union Investment (Werkstudent)" data-en="Union Investment (Working Student)"></strong><br />
+        <span data-de="Vermögensstruktur in VR entwickelt – mit Unreal Engine, GitHub & Azure DevOps"
+              data-en="Developed VR-based asset structure – using Unreal Engine, GitHub & Azure DevOps"></span>
+      </li>
+      <li>
+        <strong data-de="SRH Hochschule Heidelberg (Lehrauftrag)" data-en="SRH University (Lecturer)"></strong><br />
+        <span data-de="Modul Mixed Reality Development" data-en="Module: Mixed Reality Development"></span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2 data-de="Projekte" data-en="Projects"></h2>
     <div class="project-grid">
       <div class="project-card">
-        <img src="img/projekt1.jpg" alt="Projekt 1">
-        <h3>Projektname</h3>
-        <p>Kurzbeschreibung des Projekts. Technologien: React, Tailwind, etc.</p>
-        <a href="#" class="project-link">Mehr erfahren</a>
+        <img src="img/projekt1.jpg" alt="Projekt 1" />
+        <h3 data-de="Vermögensstruktur VR" data-en="Asset Structure in VR"></h3>
+        <p data-de="Ein VR-Prototyp zur Darstellung von Vermögensstrukturen, umgesetzt mit Unreal Engine."
+           data-en="A VR prototype visualizing asset structures, built using Unreal Engine."></p>
+        <a href="https://github.com/THEGRANDNICK" target="_blank"
+           class="project-link" data-de="Zum Projekt" data-en="View Project"></a>
       </div>
     </div>
   </section>
-  <section class="contact" id="kontakt">
-    <h2>Kontakt</h2>
-    <p>Du kannst mich direkt per <a href="mailto:nicolas@example.com">E-Mail</a> oder über <a href="https://www.linkedin.com/in/nicolasjannekvogt/">LinkedIn</a> erreichen.</p>
+
+  <section class="contact" id="kontakt" id="kontakt">
+    <h2 data-de="Kontakt" data-en="Contact"></h2>
+    <p data-de='Du kannst mich direkt per <a href="mailto:nicolas@example.com">E-Mail</a> oder auf LinkedIn kontaktieren.'
+       data-en='You can reach me directly via <a href="mailto:nicolas@example.com">email</a> or on LinkedIn.'></p>
+    <p>
+      <a href="https://www.linkedin.com/in/nicolasjannekvogt/" target="_blank">LinkedIn</a> |
+      <a href="https://github.com/THEGRANDNICK" target="_blank">GitHub</a>
+    </p>
   </section>
+
   <footer>
-    <p>© 2025 Nicolas Vogt · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></p>
+    <p data-de="© 2025 Nicolas Vogt · Impressum · Datenschutz"
+       data-en="© 2025 Nicolas Vogt · Imprint · Privacy Policy"></p>
   </footer>
+
   <script src="js/animations.js"></script>
+  <script src="js/lang.js"></script>
 </body>
 </html>

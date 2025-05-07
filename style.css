@@ -25,3 +25,61 @@ section { padding: 3rem 2rem; max-width: 960px; margin: auto; }
 footer {
   background: #eee; padding: 1.5rem 2rem; text-align: center;
 }
+.language-toggle {
+  display: flex; justify-content: flex-end; padding: 1rem; gap: 1rem;
+}
+.language-toggle button {
+  border: none; background: none; cursor: pointer; font-weight: bold;
+}
+
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.zoom-init {
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+.zoom-in {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+/* Scrollspy */
+nav a.active {
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+
+/* Dark mode */
+body.dark {
+  background-color: #111;
+  color: #f0f0f0;
+}
+body.dark header.hero {
+  background-color: #222;
+}
+body.dark .btn.primary {
+  background-color: #fff;
+  color: #111;
+}
+body.dark .btn.secondary {
+  border-color: #fff;
+  color: #fff;
+}
+body.dark footer {
+  background-color: #222;
+}
+body.dark .project-card {
+  background-color: #1a1a1a;
+  box-shadow: 0 0 12px rgba(255,255,255,0.05);
+}
