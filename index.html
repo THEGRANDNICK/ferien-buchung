@@ -1,72 +1,73 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nicolas Vogt – Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="background-overlay"></div>
-
-  <nav class="main-nav">
-    <div class="nav-left">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+  <div class="top-controls">
+    <button id="toggle-dark">🌓</button>
+    <div class="lang-toggle">
+      <button onclick="setLanguage('de')">DE</button>
+      <button onclick="setLanguage('en')">EN</button>
     </div>
-    <div class="nav-right">
-      <button id="toggle-dark">🌓</button>
-    </div>
-  </nav>
+  </div>
 
-  <header class="hero">
-    <img src="img/profilbild.jpg" alt="Profilbild" class="profile-img" />
-    <h1>Hi, ich bin Nicolas Vogt</h1>
-    <p>Informatikstudent · UX-Enthusiast · Technologischer Gestalter</p>
-    <div class="buttons">
-      <a href="resume.pdf" class="btn primary">Lebenslauf herunterladen</a>
-      <a href="#contact" class="btn secondary">Kontakt</a>
-    </div>
-  </header>
+  <main class="container">
+    <img src="img/profilbild.jpg" alt="Profilbild" class="avatar" />
+    <h1>Nicolas Vogt</h1>
+    <p class="subtitle" data-de="Informatikstudent · UX & VR Entwickler"
+       data-en="Computer Science Student · UX & VR Developer"></p>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>Ich bin ein kreativer Informatikstudent mit starkem Fokus auf User Experience, Webentwicklung und immersiven Technologien wie VR.</p>
-  </section>
+    <nav class="nav-links">
+      <a href="#about" class="nav-btn" data-de="Über mich" data-en="About"></a>
+      <a href="#experience" class="nav-btn" data-de="Erfahrung" data-en="Experience"></a>
+      <a href="#projects" class="nav-btn" data-de="Projekte" data-en="Projects"></a>
+      <a href="resume.pdf" class="nav-btn" data-de="Lebenslauf" data-en="CV" target="_blank"></a>
+      <a href="#contact" class="nav-btn" data-de="Kontakt" data-en="Contact"></a>
+    </nav>
 
-  <section id="experience">
-    <h2>Experience</h2>
-    <ul>
-      <li><strong>Union Investment (Werkstudent)</strong><br>VR-Prototyp zur Vermögensstruktur mit Unreal Engine, Azure DevOps, GitHub</li>
-      <li><strong>SRH Hochschule Heidelberg</strong><br>Lehrbeauftragter im Modul Mixed Reality Development</li>
-    </ul>
-  </section>
+    <section id="about" class="fade">
+      <h2 data-de="Über mich" data-en="About"></h2>
+      <p data-de="Ich bin ein kreativer Informatikstudent mit Fokus auf User Experience und immersive Technologien wie Virtual Reality."
+         data-en="I’m a creative computer science student focused on user experience and immersive technologies like VR."></p>
+    </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project-card">
-      <img src="img/project.png" alt="Projektbild" />
-      <h3>Vermögensstruktur VR</h3>
-      <p>Ein VR-Projekt zur Darstellung von Vermögensstrukturen im Raum. Realisiert mit Unreal Engine für Union Investment.</p>
-    </div>
-  </section>
+    <section id="experience" class="fade">
+      <h2 data-de="Erfahrung" data-en="Experience"></h2>
+      <ul>
+        <li><strong>Union Investment</strong> – <span data-de="VR-Prototyp zur Vermögensstruktur" data-en="VR prototype for asset visualization"></span></li>
+        <li><strong>SRH Hochschule Heidelberg</strong> – <span data-de="Dozent für Mixed Reality" data-en="Lecturer for Mixed Reality"></span></li>
+      </ul>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Du kannst mich direkt kontaktieren:</p>
-    <ul>
-      <li><a href="mailto:nicolas@example.com">E-Mail</a></li>
-      <li><a href="https://www.linkedin.com/in/nicolasjannekvogt/" target="_blank">LinkedIn</a></li>
-      <li><a href="https://github.com/THEGRANDNICK" target="_blank">GitHub</a></li>
-    </ul>
-  </section>
+    <section id="projects" class="fade">
+      <h2 data-de="Projekte" data-en="Projects"></h2>
+      <div class="project">
+        <img src="img/project.png" alt="Projektbild">
+        <p data-de="VR-Darstellung der Vermögensstruktur bei Union Investment mit Unreal Engine"
+           data-en="VR visualization of asset structure at Union Investment using Unreal Engine"></p>
+      </div>
+    </section>
 
-  <footer>
-    <p>© 2025 Nicolas Vogt · Impressum · Datenschutz</p>
-  </footer>
+    <section id="contact" class="fade">
+      <h2 data-de="Kontakt" data-en="Contact"></h2>
+      <p>
+        <a href="mailto:nicolas@example.com">E-Mail</a> ·
+        <a href="https://linkedin.com/in/nicolasjannekvogt" target="_blank">LinkedIn</a> ·
+        <a href="https://github.com/THEGRANDNICK" target="_blank">GitHub</a>
+      </p>
+    </section>
 
+    <footer>
+      <p>© 2025 Nicolas Vogt</p>
+    </footer>
+  </main>
+
+  <script src="js/lang.js"></script>
   <script src="js/theme.js"></script>
+  <script src="js/animate.js"></script>
 </body>
 </html>
