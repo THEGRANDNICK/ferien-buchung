@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ferienvilla Sonnenschein</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+  <header><h1>Ferienvilla Sonnenschein</h1></header>
+  <main>
+    <img src="img/villa.jpg" alt="Ferienvilla Sonnenschein" class="hero" />
+    <p>Moderne Villa mit großem Garten und Pool.</p>
+    <h2>Verfügbarkeit prüfen & buchen</h2>
+    <input type="text" id="kalender" placeholder="Datum auswählen" />
+    <form id="buchung-form">
+      <input type="text" name="name" placeholder="Ihr Name" required />
+      <input type="email" name="email" placeholder="Ihre E-Mail" required />
+      <input type="text" name="date" id="selected-date" placeholder="Datum" required readonly />
+      <button type="submit">Buchung senden</button>
+    </form>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="calendar.js"></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script src="email.js"></script>
+</body>
+</html>
