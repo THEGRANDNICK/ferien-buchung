@@ -1,73 +1,400 @@
 <!DOCTYPE html>
-<html lang="de">
+
+<html data-lang="en" data-theme="light" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nicolas Vogt – Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nicolas Vogt Portfolio</title>
+<style>
+    :root {
+      --bg-light: #ffffff;
+      --bg-dark: #000000;
+      --text-light: #000000;
+      --text-dark: #ffffff;
+      --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    [data-theme="light"] {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+    [data-theme="dark"] {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    html, body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      transition: var(--transition);
+      scroll-behavior: smooth;
+      cursor: none;
+    }
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: rgba(128, 128, 128, 0.3);
+      position: fixed;
+      pointer-events: none;
+      z-index: 1000;
+      transition: transform 0.1s ease;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+      margin: auto;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 1rem 0 0.5rem;
+    }
+    p.subtitle {
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem auto;
+    }
+    nav button {
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      border: 2px solid black;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+    [data-theme="dark"] nav button {
+      background-color: white;
+      color: black;
+    }
+    nav button:hover {
+      animation: jiggle 0.3s ease;
+      background-color: white;
+      color: black;
+    }
+    [data-theme="dark"] nav button:hover {
+      background-color: black;
+      color: white;
+    }
+    @keyframes jiggle {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1) rotate(1deg); }
+      50% { transform: scale(1.1) rotate(-1deg); }
+      75% { transform: scale(1.05) rotate(1deg); }
+      100% { transform: scale(1); }
+    }
+    section {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-bottom: 2rem;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    section h2 {
+      color: inherit;
+    }
+    .project {
+      max-width: 500px;
+      margin: auto;
+    }
+    .project img {
+      width: 100%;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .project img:hover {
+      transform: scale(1.05);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .modal.show {
+      display: flex;
+      opacity: 1;
+      transform: scale(1);
+    }
+    .modal-content {
+      background: white;
+      color: black;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(20px);
+      animation: riseUp 0.4s ease forwards;
+      position: relative;
+    }
+    .modal-content button.close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: black;
+    }
+    @keyframes riseUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+    }
+    .modal p {
+      margin-top: 1rem;
+    }
+    .top-right-controls {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 80px;
+      height: 32px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 32px;
+      text-align: center;
+      line-height: 32px;
+      font-size: 0.75rem;
+      font-weight: normal;
+      color: #000;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 24px;
+      width: 24px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #666;
+    }
+    input:checked + .slider:before {
+      transform: translateX(48px);
+    }
+    .contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .contact-buttons a.nav-button {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+  [data-theme="dark"] .contact-buttons a.nav-button {
+    background-color: white;
+    color: black;
+  }
+  .contact-buttons a.nav-button:hover {
+    background-color: white;
+    color: black;
+    animation: jiggle 0.3s ease;
+  }
+  [data-theme="dark"] .contact-buttons a.nav-button:hover {
+    background-color: black;
+    color: white;
+  }
+</style>
 </head>
 <body>
-  <div class="top-controls">
-    <button id="toggle-dark">🌓</button>
-    <div class="lang-toggle">
-      <button onclick="setLanguage('de')">DE</button>
-      <button onclick="setLanguage('en')">EN</button>
-    </div>
-  </div>
+<audio id="blubSound" src="https://cdn.pixabay.com/audio/2022/10/20/audio_a8cfbfc1be.mp3"></audio>
+<audio id="hoverSound" src="https://cdn.pixabay.com/audio/2022/03/08/audio_e5dc20b70b.mp3"></audio>
+<div class="cursor"></div>
+<div class="top-right-controls">
+<label class="toggle-switch" title="Jedi/Sith Mode">
+<input id="themeSwitch" type="checkbox"/>
+<span class="slider" id="themeLabel">Jedi</span>
+</label>
+<label class="toggle-switch" title="Language Toggle">
+<input id="langSwitch" type="checkbox"/>
+<span class="slider" id="langLabel">EN</span>
+</label>
+</div>
+<header onclick="scrollToSection('top')">
+<img alt="Profile Picture" class="profile-pic" src="profile.jpg"/>
+<h1>Nicolas Vogt</h1>
+<p class="subtitle" data-de="UX &amp; VR Entwickler" data-en="UX &amp; VR Developer">UX &amp; VR Developer</p>
+</header>
+<nav>
+<button onclick="scrollToSection('about')">About</button>
+<button onclick="scrollToSection('experience')">Experience</button>
+<button onclick="scrollToSection('projects')">Projects</button>
+<button onclick="window.open('resume.pdf')">Resume</button>
+<button onclick="scrollToSection('contact')">Contact</button>
+</nav>
+<section id="about">
+<h2 data-de="Über Mich" data-en="About Me">About Me</h2>
+<p data-de="Ich kreiere immersive digitale Erlebnisse." data-en="I create immersive digital experiences.">
+    I create immersive digital experiences.
+  </p>
+</section>
+<section id="experience">
+<h2 data-de="Erfahrung" data-en="Experience">Experience</h2>
+<p data-de="Spezialisiert auf UX und VR mit Unreal Engine." data-en="Specializing in UX and VR with Unreal Engine.">
+    Specializing in UX and VR with Unreal Engine.
+  </p>
+</section>
+<section id="projects">
+<h2 data-de="Projekte" data-en="Projects">Projects</h2>
+<div class="project">
+<img alt="Vermögensstruktur VR" onclick="openModal('project1')" src="project.png"/>
+</div>
+<!-- You can add more project entries similarly -->
+</section>
+<section id="contact">
+<h2 data-de="Kontakt" data-en="Contact">Contact</h2>
+<div class="contact-buttons">
+<a class="nav-button" href="mailto:nicolas.vogt@thegrandnick.de">E-Mail</a>
+<a class="nav-button" href="https://github.com/THEGRANDNICK" target="_blank">GitHub</a>
+<a class="nav-button" href="https://linkedin.com/in/nicolasjannekvogt" target="_blank">LinkedIn</a>
+</div>
+</section>
+<div class="modal" id="projectModal" onclick="handleModalClick(event)">
+<div class="modal-content" onclick="event.stopPropagation()">
+<button class="close" onclick="closeModal()">×</button>
+<img alt="Vermögensstruktur VR" src="project.png"/>
+<p data-de="VR-Visualisierung von Vermögensstrukturen für Union Investment mit Unreal Engine." data-en="VR visualization of asset structures for Union Investment using Unreal Engine.">
+      VR visualization of asset structures for Union Investment using Unreal Engine.
+    </p>
+</div>
+</div>
+<script>
+  function scrollToSection(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
 
-  <main class="container">
-    <img src="img/profilbild.jpg" alt="Profilbild" class="avatar" />
-    <h1>Nicolas Vogt</h1>
-    <p class="subtitle" data-de="Informatikstudent · UX & VR Entwickler"
-       data-en="Computer Science Student · UX & VR Developer"></p>
+  const modal = document.getElementById('projectModal');
+  const blub = document.getElementById('blubSound');
 
-    <nav class="nav-links">
-      <a href="#about" class="nav-btn" data-de="Über mich" data-en="About"></a>
-      <a href="#experience" class="nav-btn" data-de="Erfahrung" data-en="Experience"></a>
-      <a href="#projects" class="nav-btn" data-de="Projekte" data-en="Projects"></a>
-      <a href="resume.pdf" class="nav-btn" data-de="Lebenslauf" data-en="CV" target="_blank"></a>
-      <a href="#contact" class="nav-btn" data-de="Kontakt" data-en="Contact"></a>
-    </nav>
+  function openModal(id) {
+    modal.style.display = 'flex';
+    setTimeout(() => modal.classList.add('show'), 10);
+    blub.currentTime = 0;
+    blub.play().catch(() => {});
+  }
 
-    <section id="about" class="fade">
-      <h2 data-de="Über mich" data-en="About"></h2>
-      <p data-de="Ich bin ein kreativer Informatikstudent mit Fokus auf User Experience und immersive Technologien wie Virtual Reality."
-         data-en="I’m a creative computer science student focused on user experience and immersive technologies like VR."></p>
-    </section>
+  function closeModal() {
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.style.display = 'none';
+    }, 400);
+  }
 
-    <section id="experience" class="fade">
-      <h2 data-de="Erfahrung" data-en="Experience"></h2>
-      <ul>
-        <li><strong>Union Investment</strong> – <span data-de="VR-Prototyp zur Vermögensstruktur" data-en="VR prototype for asset visualization"></span></li>
-        <li><strong>SRH Hochschule Heidelberg</strong> – <span data-de="Dozent für Mixed Reality" data-en="Lecturer for Mixed Reality"></span></li>
-      </ul>
-    </section>
+  function handleModalClick(event) {
+    if (event.target === modal) {
+      closeModal();
+      scrollToSection('top');
+    }
+  }
 
-    <section id="projects" class="fade">
-      <h2 data-de="Projekte" data-en="Projects"></h2>
-      <div class="project">
-        <img src="img/project.png" alt="Projektbild">
-        <p data-de="VR-Darstellung der Vermögensstruktur bei Union Investment mit Unreal Engine"
-           data-en="VR visualization of asset structure at Union Investment using Unreal Engine"></p>
-      </div>
-    </section>
+  const themeSwitch = document.getElementById('themeSwitch');
+  const themeLabel = document.getElementById('themeLabel');
+  themeSwitch.addEventListener('change', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    themeLabel.textContent = isDark ? 'Jedi' : 'Sith';
+  });
 
-    <section id="contact" class="fade">
-      <h2 data-de="Kontakt" data-en="Contact"></h2>
-      <p>
-        <a href="mailto:nicolas@example.com">E-Mail</a> ·
-        <a href="https://linkedin.com/in/nicolasjannekvogt" target="_blank">LinkedIn</a> ·
-        <a href="https://github.com/THEGRANDNICK" target="_blank">GitHub</a>
-      </p>
-    </section>
+  const langSwitch = document.getElementById('langSwitch');
+  const langLabel = document.getElementById('langLabel');
+  langSwitch.addEventListener('change', () => {
+    const currentLang = document.body.getAttribute('data-lang') === 'de' ? 'en' : 'de';
+    document.body.setAttribute('data-lang', currentLang);
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = el.getAttribute(`data-${currentLang}`);
+    });
+    langLabel.textContent = currentLang.toUpperCase();
+  });
 
-    <footer>
-      <p>© 2025 Nicolas Vogt</p>
-    </footer>
-  </main>
+  const cursor = document.querySelector('.cursor');
+  document.addEventListener('mousemove', e => {
+    const hoverSound = document.getElementById('hoverSound');
+    if (e.target.closest('button, a')) {
+      hoverSound.currentTime = 0;
+      hoverSound.play();
+    }
+    cursor.style.left = `${e.clientX - 10}px`;
+    cursor.style.top = `${e.clientY - 10}px`;
+  });
+</script><audio id="hoverSound" preload="auto" src="audio/hover.mp3"></audio><audio id="clickSound" preload="auto" src="audio/click.mp3"></audio><script>
+const hoverSound = document.getElementById('hoverSound');
+const clickSound = document.getElementById('clickSound');
 
-  <script src="js/lang.js"></script>
-  <script src="js/theme.js"></script>
-  <script src="js/animate.js"></script>
-</body>
-</html>
+document.addEventListener('mouseover', e => {
+  if (e.target.closest('button, a')) {
+    hoverSound.currentTime = 0;
+    hoverSound.play().catch(() => {});
+  }
+});
+
+function openModal() {
+  const modal = document.getElementById('projectModal');
+  modal.classList.add('show');
+  modal.style.display = 'flex';
+  clickSound.currentTime = 0;
+  clickSound.play().catch(() => {});
+}
+</script></body></html>
